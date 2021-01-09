@@ -1,4 +1,3 @@
-from __future__ import print_function
 from fastapi import FastAPI
 import uvicorn
 from fastapi.middleware.cors import CORSMiddleware
@@ -8,9 +7,6 @@ import ApiUrl
 import GoogleApis
 import pickle
 import os.path
-from googleapiclient.discovery import build
-from google_auth_oauthlib.flow import InstalledAppFlow
-from google.auth.transport.requests import Request
 
 app = FastAPI()
 
