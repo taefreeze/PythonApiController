@@ -27,8 +27,12 @@ async def List():
     return response
 
 @app.post("ApiSignUp")
-async def ApiSignUp():
-    return 0
+async def ApiSignUp(name_eng : str, name_th : str, api_url : str, param1 : str):
+    API_ENDPOINT = "https://taeapiplatform.herokuapp.com/ApiSignup/"
+    response = requests.post(url = API_ENDPOINT, data={'name_eng' : name_eng, 'name_th' : name_th, 'api_url' : api_url, 'param1' : param1})
+    code = response.status_code
+    reason = response.reason
+    return code
 
 if __name__ == '__main__':
    uvicorn.run(app, host="0.0.0.0", port=80, debug=True)
