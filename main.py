@@ -4,9 +4,6 @@ from fastapi.middleware.cors import CORSMiddleware
 import requests
 import pandas as pd
 import ApiUrl
-import GoogleApis
-import pickle
-import os.path
 
 app = FastAPI()
 
