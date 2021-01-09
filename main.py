@@ -1,9 +1,16 @@
+from __future__ import print_function
 from fastapi import FastAPI
 import uvicorn
 from fastapi.middleware.cors import CORSMiddleware
 import requests
 import pandas as pd
 import ApiUrl
+import GoogleApis
+import pickle
+import os.path
+from googleapiclient.discovery import build
+from google_auth_oauthlib.flow import InstalledAppFlow
+from google.auth.transport.requests import Request
 
 app = FastAPI()
 
@@ -27,13 +34,14 @@ async def List():
     response = requests.get(ApiUrl.List).json()
     return response
 
-@app.post("ApiSignUp")
+@app.post("/ApiSignUp")
 async def ApiSignUp(name_eng : str, name_th : str, api_url : str, param1 : str):
-    response = requests.post(url = ApiUrl.Signup, data={'name_eng' : name_eng, 'name_th' : name_th, 'api_url' : api_url, 'param1' : param1})
-    code = response.status_code
-    reason = response.reason
+    request = requests.post(url = ApiUrl.Signup, data={'name_eng' : name_eng, 'name_th' : name_th, 'api_url' : api_url, 'param1' : param1})
+    code = request.status_code
+    reason = request.reason
     status = {'code' : code,'reason' : reason}
     return status
+
 
 if __name__ == '__main__':
    uvicorn.run(app, host="0.0.0.0", port=80, debug=True)
