@@ -29,11 +29,22 @@ async def List():
 
 @app.post("/ApiSignUp")
 async def ApiSignUp(name_eng : str, name_th : str, api_url : str, param1 : str):
-    request = requests.post(url = ApiUrl.Signup, data={'name_eng' : name_eng, 'name_th' : name_th, 'api_url' : api_url, 'param1' : param1})
+    data = {
+            'name_eng' : name_eng,
+            'name_th' : name_th, 
+            'api_url' : api_url, 
+            'param1' : param1
+            }
+    request = requests.post(url = ApiUrl.Signup, json=data)
     code = request.status_code
     reason = request.reason
     status = {'code' : code,'reason' : reason}
     return status
+
+@app.post("/Update")
+async def Update(id : int,data : dict):
+    return 0
+    
 
 
 if __name__ == '__main__':
