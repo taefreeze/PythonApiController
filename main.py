@@ -5,7 +5,9 @@ from fastapi.middleware.cors import CORSMiddleware
 import requests
 import pandas as pd
 import ApiUrl
+from model import Register
 import json
+from pydantic import BaseModel
 
 app = FastAPI()
 
@@ -39,7 +41,25 @@ async def ApiSignUp(name_eng : str, name_th : str, api_url : str, param1 : str):
             }
     request = requests.post(url = ApiUrl.SignupThun, json=data)
     response = request.json()
-    return response
+    status = {'status' : {'code' : request.status_code, 'reason' : request.reason}}
+    return response,status
+
+@app.post("/ApiSignUpJson")
+async def ApiSignUp(Registers : Register):
+    name_eng = Registers.name_eng
+    name_th = Register.name_th
+    api_url = Register.api_url
+    param1 = Register.param1
+    data = {
+            'name_eng' : name_eng,
+            'name_th' : name_th, 
+            'api_url' : api_url, 
+            'param1' : param1
+            }
+    request = requests.post(url = ApiUrl.SignupThun, json=data)
+    response = request.json()
+    status = {'status' : {'code' : request.status_code, 'reason' : request.reason}}
+    return response,status
 
 @app.post("/Update")
 async def Update(id : int,data : dict):
