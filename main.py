@@ -45,11 +45,11 @@ async def ApiSignUp(name_eng : str, name_th : str, api_url : str, param1 : str):
     return response,status
 
 @app.post("/ApiSignUpJson")
-async def ApiSignUp(Registers : Register):
+async def ApiSignUpJson(Registers : Register):
     name_eng = Registers.name_eng
-    name_th = Register.name_th
-    api_url = Register.api_url
-    param1 = Register.param1
+    name_th = Registers.name_th
+    api_url = Registers.api_url
+    param1 = Registers.param1
     data = {
             'name_eng' : name_eng,
             'name_th' : name_th, 
