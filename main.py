@@ -1,9 +1,11 @@
+from requests.models import Response
 from fastapi import FastAPI
 import uvicorn
 from fastapi.middleware.cors import CORSMiddleware
 import requests
 import pandas as pd
 import ApiUrl
+import json
 
 app = FastAPI()
 
@@ -36,10 +38,8 @@ async def ApiSignUp(name_eng : str, name_th : str, api_url : str, param1 : str):
             'param1' : param1
             }
     request = requests.post(url = ApiUrl.SignupThun, json=data)
-    code = request.status_code
-    reason = request.reason
-    status = {'code' : code,'reason' : reason}
-    return status
+    response = request.json()
+    return response
 
 @app.post("/Update")
 async def Update(id : int,data : dict):
