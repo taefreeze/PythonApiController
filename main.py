@@ -35,7 +35,7 @@ async def ApiSignUp(name_eng : str, name_th : str, api_url : str, param1 : str):
             'api_url' : api_url, 
             'param1' : param1
             }
-    request = requests.post(url = ApiUrl.Signup, json=data)
+    request = requests.post(url = ApiUrl.SignupThun, json=data)
     code = request.status_code
     reason = request.reason
     status = {'code' : code,'reason' : reason}
