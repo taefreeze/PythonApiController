@@ -5,11 +5,14 @@ from fastapi import Request, FastAPI
 from typing import Optional
 
 
-class Register(BaseModel):
+class ServiceRegisterModel(BaseModel):
     service_name: str
     api_url: str
     permission: str
     user_id: str
 
-class User(BaseModel):
+class UserLoginModel(BaseModel):
+    id : str
+
+class ServiceDeleteModel(BaseModel):
     id : str
