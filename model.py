@@ -6,7 +6,7 @@ from typing import Optional
 
 
 class Register(BaseModel):
-    name_eng: str
-    name_th: str
+    service_name: str
     api_url: str
-    param1: str
+    permission: str
+    user_id: str

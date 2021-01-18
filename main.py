@@ -46,20 +46,20 @@ async def ApiSignUp(name_eng : str, name_th : str, api_url : str, param1 : str):
 
 @app.post("/ApiSignUpJson")
 async def ApiSignUpJson(Registers : Register):
-    name_eng = Registers.name_eng
-    name_th = Registers.name_th
-    api_url = Registers.api_url
-    param1 = Registers.param1
     data = {
-            'name_eng' : name_eng,
-            'name_th' : name_th, 
-            'api_url' : api_url, 
-            'param1' : param1
+            'service_name' : Registers.service_name,
+            'api_url' : Registers.api_url, 
+            'permission' : Registers.permission, 
+            'user_id' : Registers.user_id
             }
     request = requests.post(url = ApiUrl.SignupThun, json=data)
     response = request.json()
     status = {'status' : {'code' : request.status_code, 'reason' : request.reason}}
     return response,status
+
+@app.post("/User")
+async def User():
+    return 0
 
 @app.post("/Update")
 async def Update(id : int,data : dict):
