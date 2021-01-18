@@ -5,7 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 import requests
 import pandas as pd
 import ApiUrl
-from model import ServiceRegisterModel,ServiceDeleteModel
+from model import ServiceRegisterModel,ServiceDeleteModel,UserInfoModel
 import json
 from pydantic import BaseModel
 
@@ -58,8 +58,19 @@ async def ApiSignUpJson(Registers : ServiceRegisterModel):
     return response,status
 
 @app.post("/User")
-async def User():
-    return 0
+async def User(Userinfo : UserInfoModel):
+    data = {
+        'Name' : Userinfo.EW,
+        'Fullname' : Userinfo.Ed,
+        'Lastname' : Userinfo.IU,
+        'google_id' : Userinfo.aV,
+        'user_photo' : Userinfo.fL,
+        'email' : Userinfo.uu   
+        }
+    request = requests.post(url = ApiUrl.User,json=data)
+    response = request.json()
+    status = {'status' : {'code' : request.status_code, 'reason' : request.reason}}
+    return response,status
 
 @app.post("/Update")
 async def Update(id : int,data : dict):
@@ -68,11 +79,13 @@ async def Update(id : int,data : dict):
 @app.delete("/Delete")
 async def Delete( Deletes : ServiceDeleteModel):
     data = {
-        'id' : Deletes.id
+        'service_id' : Deletes.service_id,
+        'user_id' : Deletes.user_id
     }
     delete = requests.delete(url= ApiUrl.Delete, json=data)
     response = delete.json()
-    return response
+    status = {'status' :{'code' : delete.status_code,'reason' : delete.reason}}
+    return response,status
     
 
 

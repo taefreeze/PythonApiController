@@ -6,13 +6,19 @@ from typing import Optional
 
 
 class ServiceRegisterModel(BaseModel):
-    service_name: str
-    api_url: str
-    permission: str
-    user_id: str
+    service_name    : str
+    api_url         : str
+    permission      : str
+    user_id         : str
 
-class UserLoginModel(BaseModel):
-    id : str
+class UserInfoModel(BaseModel):
+    EW  : str
+    Ed  : str
+    IU  : str
+    aV  : str
+    fL  : str
+    uu  : str
 
 class ServiceDeleteModel(BaseModel):
-    id : str
+    service_id  : str
+    user_id     : str
