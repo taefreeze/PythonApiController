@@ -5,7 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 import requests
 import pandas as pd
 import ApiUrl
-from model import ServiceRegisterModel,ServiceDeleteModel,UserInfoModel
+import model as Model
 import json
 from pydantic import BaseModel
 
@@ -51,7 +51,7 @@ async def ApiSignUp(name_eng: str, name_th: str, api_url: str, param1: str):
 
 @app.post("/ApiSignUpJson")
 
-async def ApiSignUpJson(Registers : ServiceRegisterModel):
+async def ApiSignUpJson(Registers : Model.ServiceRegisterModel):
     data = {
             'service_name' : Registers.service_name,
             'api_url' : Registers.api_url, 
@@ -65,7 +65,7 @@ async def ApiSignUpJson(Registers : ServiceRegisterModel):
 
 
 @app.post("/User")
-async def User(Userinfo : UserInfoModel):
+async def User(Userinfo : Model.UserInfoModel):
     data = {
         'name' : Userinfo.EW,
         'fullname' : Userinfo.Ed,
@@ -79,13 +79,20 @@ async def User(Userinfo : UserInfoModel):
     status = {'status' : {'code' : request.status_code, 'reason' : request.reason}}
     return response,status
 
-@app.post("/Update")
-async def Update(id: int, data: dict):
-    return 0
+@app.put("/Update")
+async def Update( Updates : Model.ServiceUpdateModel):
+    data = {
+        'service_id' : Updates.service_id,
+        'user_id' : Updates.user_id
+    }
+    update = requests.put(ApiUrl.Update , json=data) 
+    response = update.json()
+    status = {'status' :{'code' : update.status_code,'reason' : update.reason}}
+    return response,status
 
 
 @app.delete("/Delete")
-async def Delete( Deletes : ServiceDeleteModel):
+async def Delete( Deletes : Model.ServiceDeleteModel):
     data = {
         'service_id' : Deletes.service_id,
         'user_id' : Deletes.user_id

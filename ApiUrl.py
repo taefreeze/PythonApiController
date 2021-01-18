@@ -8,3 +8,5 @@ SignupThun = "https://fastapimongo.herokuapp.com/Service"
 Delete = "https://fastapimongo.herokuapp.com/DeleteService"
 #user
 User = "https://fastapimongo.herokuapp.com/User"
+#put
+Update = "https://fastapimongo.herokuapp.com/Update"

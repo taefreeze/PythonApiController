@@ -22,3 +22,7 @@ class UserInfoModel(BaseModel):
 class ServiceDeleteModel(BaseModel):
     service_id  : str
     user_id     : str
+
+class ServiceUpdateModel(BaseModel):
+    service_id  : str
+    user_id     : str
