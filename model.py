@@ -10,3 +10,6 @@ class Register(BaseModel):
     api_url: str
     permission: str
     user_id: str
+
+class User(BaseModel):
+    id : str

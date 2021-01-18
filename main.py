@@ -28,7 +28,7 @@ async def main():
 
 @app.get("/List")
 async def List():
-    response = requests.get(ApiUrl.List).json()
+    response = requests.get(ApiUrl.ListThun).json()
     return response
 
 @app.post("/ApiSignUp")
