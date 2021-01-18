@@ -67,9 +67,9 @@ async def ApiSignUpJson(Registers : ServiceRegisterModel):
 @app.post("/User")
 async def User(Userinfo : UserInfoModel):
     data = {
-        'Name' : Userinfo.EW,
-        'Fullname' : Userinfo.Ed,
-        'Lastname' : Userinfo.IU,
+        'name' : Userinfo.EW,
+        'fullname' : Userinfo.Ed,
+        'lastname' : Userinfo.IU,
         'google_id' : Userinfo.aV,
         'user_photo' : Userinfo.fL,
         'email' : Userinfo.uu   
@@ -94,8 +94,6 @@ async def Delete( Deletes : ServiceDeleteModel):
     response = delete.json()
     status = {'status' :{'code' : delete.status_code,'reason' : delete.reason}}
     return response,status
-
-
 
 if __name__ == '__main__':
     uvicorn.run(app, host="0.0.0.0", port=80, debug=True)
