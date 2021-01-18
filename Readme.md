@@ -27,16 +27,16 @@ Running in local would be
 In fastapi
 
 # Author
-* **Chanwit Chawpraina** -  *Student* - RMUTSB
+* **[Chanwit Chawpraina](https://github.com/taefreeze)** -  *Student* - RMUTSB
 
 See also the list of contributors who participated in this project.
-* **1**
-* **2**
+* **[Jeed](https://github.com/Phongsiri309)** - *Student* - RMUTSB
+* **[Thun](https://github.com/topoko123)** - *Student* - RMUTSB
 
 ## Built With
 
-* [Python](https://www.python.org/) - Language that use in this project.
-* [FastAPI](https://fastapi.tiangolo.com/) - web framework for building APIs
+* **[Python](https://www.python.org/)** - Language that use in this project.
+* **[FastAPI](https://fastapi.tiangolo.com/)** - web framework for building APIs
 
 # Usage
 * **[ApiList](https://fastapimongo.herokuapp.com/ApiList)**
