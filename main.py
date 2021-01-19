@@ -35,13 +35,15 @@ async def List():
     return response
 
 @app.get("/ListBody")
-async def ListBody(Pages : Model.PageList):
+async def ListBody(page : int=1,limit : int=1):
+    url ="https://fastapimongo.herokuapp.com/ApiListPage?page="+str(page)+"&limit="+str(limit)
     data = {
-        'page' : Pages.page,
-        'limit' : 10
+        'page' : page,
+        'limit' : limit
     }
-    response = requests.request(method='get', url=ApiUrl.ListThun, data=data)
-    return response
+    request = requests.get(url).json()
+    #request = requests.request(method='get', url=ApiUrl.ListPage, json=data)
+    return request
 
 @app.post("/ApiSignUp")
 async def ApiSignUp(name_eng: str, name_th: str, api_url: str, param1: str):

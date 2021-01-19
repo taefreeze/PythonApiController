@@ -30,7 +30,3 @@ class ServiceDeleteModel(BaseModel):
     service_id  : str
     user_id     : str
 
-
-class PageList(BaseModel):
-    page : int
-
