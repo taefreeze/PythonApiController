@@ -19,12 +19,15 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 def result(res):
-    return {"result":res}
+    return {"result": res}
+
 
 @app.get("/")
 async def main():
     return 'Hello World'
+
 
 @app.get("/List")
 async def List():
@@ -41,20 +44,22 @@ async def ListPost(Pages : PageList):
     return response
 
 @app.post("/ApiSignUp")
-async def ApiSignUp(name_eng : str, name_th : str, api_url : str, param1 : str):
+async def ApiSignUp(name_eng: str, name_th: str, api_url: str, param1: str):
     data = {
-            'name_eng' : name_eng,
-            'name_th' : name_th, 
-            'api_url' : api_url, 
-            'param1' : param1
-            }
-    request = requests.post(url = ApiUrl.SignupThun, json=data)
+        'name_eng': name_eng,
+        'name_th': name_th,
+        'api_url': api_url,
+        'param1': param1
+    }
+    request = requests.post(url=ApiUrl.SignupThun, json=data)
     response = request.json()
-    status = {'status' : {'code' : request.status_code, 'reason' : request.reason}}
-    return response,status
+    status = {'status': {'code': request.status_code, 'reason': request.reason}}
+    return response, status
+
 
 @app.post("/ApiSignUpJson")
-async def ApiSignUpJson(Registers : ServiceRegisterModel):
+
+async def ApiSignUpJson(Registers : Model.ServiceRegisterModel):
     data = {
             'service_name' : Registers.service_name,
             'api_url' : Registers.api_url, 
@@ -63,15 +68,16 @@ async def ApiSignUpJson(Registers : ServiceRegisterModel):
             }
     request = requests.post(url = ApiUrl.SignupThun, json=data)
     response = request.json()
-    status = {'status' : {'code' : request.status_code, 'reason' : request.reason}}
-    return response,status
+    status = {'status': {'code': request.status_code, 'reason': request.reason}}
+    return response, status
+
 
 @app.post("/User")
-async def User(Userinfo : UserInfoModel):
+async def User(Userinfo : Model.UserInfoModel):
     data = {
-        'Name' : Userinfo.EW,
-        'Fullname' : Userinfo.Ed,
-        'Lastname' : Userinfo.IU,
+        'name' : Userinfo.EW,
+        'fullname' : Userinfo.Ed,
+        'lastname' : Userinfo.IU,
         'google_id' : Userinfo.aV,
         'user_photo' : Userinfo.fL,
         'gmail' : Userinfo.uu   
@@ -96,7 +102,7 @@ async def Update(Updates : ServiceUpdateModel):
     return response,status
 
 @app.delete("/Delete")
-async def Delete( Deletes : ServiceDeleteModel):
+async def Delete( Deletes : Model.ServiceDeleteModel):
     data = {
         'service_id' : Deletes.service_id,
         'user_id' : Deletes.user_id
@@ -105,7 +111,7 @@ async def Delete( Deletes : ServiceDeleteModel):
     response = delete.json()
     status = {'status' :{'code' : delete.status_code,'reason' : delete.reason}}
     return response,status
-    
+
 
 if __name__ == '__main__':
-   uvicorn.run(app, host="0.0.0.0", port=80, debug=True)
+    uvicorn.run(app, host="0.0.0.0", port=80, debug=True)
