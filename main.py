@@ -5,7 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 import requests
 import pandas as pd
 import ApiUrl
-from model import ServiceRegisterModel,ServiceDeleteModel,UserInfoModel
+from model import ServiceRegisterModel,ServiceDeleteModel,UserInfoModel,PageList,ServiceUpdateModel
 import json
 from pydantic import BaseModel
 
@@ -29,6 +29,15 @@ async def main():
 @app.get("/List")
 async def List():
     response = requests.get(ApiUrl.ListThun).json()
+    return response
+
+@app.post("/ListPost")
+async def ListPost(Pages : PageList):
+    data = {
+        'page' : Pages.page,
+        'limit' : 10
+    }
+    response = requests.post(ApiUrl.ListThun,json=data).json()
     return response
 
 @app.post("/ApiSignUp")
@@ -65,16 +74,26 @@ async def User(Userinfo : UserInfoModel):
         'Lastname' : Userinfo.IU,
         'google_id' : Userinfo.aV,
         'user_photo' : Userinfo.fL,
-        'email' : Userinfo.uu   
+        'gmail' : Userinfo.uu   
         }
     request = requests.post(url = ApiUrl.User,json=data)
     response = request.json()
     status = {'status' : {'code' : request.status_code, 'reason' : request.reason}}
     return response,status
 
-@app.post("/Update")
-async def Update(id : int,data : dict):
-    return 0
+@app.patch("/Update")
+async def Update(Updates : ServiceUpdateModel):
+    data = {
+            'service_id' : Updates.service_id,
+            'service_name' : Updates.service_name,
+            'api_url' : Updates.api_url, 
+            'permission' : Updates.permission, 
+            'user_id' : Updates.user_id
+            }
+    request = requests.put(url = ApiUrl.Update,json=data)
+    response = request.json()
+    status = {'status' : {'code' : request.status_code, 'reason' : request.reason}}
+    return response,status
 
 @app.delete("/Delete")
 async def Delete( Deletes : ServiceDeleteModel):
@@ -87,7 +106,6 @@ async def Delete( Deletes : ServiceDeleteModel):
     status = {'status' :{'code' : delete.status_code,'reason' : delete.reason}}
     return response,status
     
-
 
 if __name__ == '__main__':
    uvicorn.run(app, host="0.0.0.0", port=80, debug=True)
