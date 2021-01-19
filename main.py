@@ -5,7 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 import requests
 import pandas as pd
 import ApiUrl
-from model import ServiceRegisterModel,ServiceDeleteModel,UserInfoModel,PageList,ServiceUpdateModel
+import model as Model
 import json
 from pydantic import BaseModel
 
@@ -34,13 +34,13 @@ async def List():
     response = requests.get(ApiUrl.ListThun).json()
     return response
 
-@app.post("/ListPost")
-async def ListPost(Pages : PageList):
+@app.get("/ListBody")
+async def ListBody(Pages : Model.PageList):
     data = {
         'page' : Pages.page,
         'limit' : 10
     }
-    response = requests.post(ApiUrl.ListThun,json=data).json()
+    response = requests.request(method='get', url=ApiUrl.ListThun, data=data)
     return response
 
 @app.post("/ApiSignUp")
@@ -58,7 +58,6 @@ async def ApiSignUp(name_eng: str, name_th: str, api_url: str, param1: str):
 
 
 @app.post("/ApiSignUpJson")
-
 async def ApiSignUpJson(Registers : Model.ServiceRegisterModel):
     data = {
             'service_name' : Registers.service_name,
@@ -88,7 +87,7 @@ async def User(Userinfo : Model.UserInfoModel):
     return response,status
 
 @app.patch("/Update")
-async def Update(Updates : ServiceUpdateModel):
+async def Update(Updates : Model.ServiceUpdateModel):
     data = {
             'service_id' : Updates.service_id,
             'service_name' : Updates.service_name,
