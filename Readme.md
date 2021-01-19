@@ -1,19 +1,3 @@
-<<<<<<< HEAD
-# Tae Chanwit : PythonAPIController
--เป็น Api เพื่อรับ Requests ของเว็บแอพพลิเคชัน\
--เพื่อให้ส่งผ่านข้อมูลไปยัง Database Api\
--แล้วส่ง Response กลับไปยังเว็บแอพพลิเคชัน
-
-# ฟังก์ชันที่เสร็จไปแล้วบางส่วน (WIP)
-ลิสท์ของ Api (WIP ส่วนของ ID ผู้ใช้ ในการเรียกยังไม่มี)
-
-# Url
--Api List\
-"https://fastapimongo.herokuapp.com/ApiList"
-
--Api Signup\
-"https://fastapimongo.herokuapp.com/Service"
-=======
 # Tae Chanwit: PythonAPIController
 -Get request from front-end \
 -then send a request to Database API\
@@ -57,4 +41,3 @@ See also the list of contributors who participated in this project.
 # Usage
 * **[ApiList](https://fastapimongo.herokuapp.com/ApiList)**
 * **[ApiSignup](https://fastapimongo.herokuapp.com/Service)**
->>>>>>> c86d55049208294940d97f43eb76fae233d0389f
