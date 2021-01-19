@@ -72,7 +72,7 @@ async def User(Userinfo : Model.UserInfoModel):
         'lastname' : Userinfo.IU,
         'google_id' : Userinfo.aV,
         'user_photo' : Userinfo.fL,
-        'email' : Userinfo.uu   
+        'gmail' : Userinfo.uu   
         }
     request = requests.post(url = ApiUrl.User,json=data)
     response = request.json()
