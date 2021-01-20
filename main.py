@@ -75,7 +75,7 @@ async def ApiSignUp(Registers : Model.ServiceRegisterModel):
 async def User(Userinfo : Model.UserInfoModel):
     data = {
         'fullname' : Userinfo.Name,
-        'token_id' : Userinfo.Token,
+        'id_token' : Userinfo.Token,
         'google_photo' : Userinfo.Image,
         'gmail' : Userinfo.Email   
         }
