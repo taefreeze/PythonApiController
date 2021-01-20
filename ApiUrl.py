@@ -10,3 +10,5 @@ Delete = "https://fastapimongo.herokuapp.com/DeleteService"
 User = "https://fastapimongo.herokuapp.com/Login"
 #put
 Update = "https://fastapimongo.herokuapp.com/Update"
+#ListRange
+ListPage = "https://fastapimongo.herokuapp.com/ApiListPage"

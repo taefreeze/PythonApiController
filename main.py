@@ -34,6 +34,16 @@ async def List():
     response = requests.get(ApiUrl.ListThun).json()
     return response
 
+@app.get("/ListBody")
+async def ListBody(page : int=1,limit : int=1):
+    url ="https://fastapimongo.herokuapp.com/ApiListPage?page="+str(page)+"&limit="+str(limit)
+    data = {
+        'page' : page,
+        'limit' : limit
+    }
+    request = requests.get(url).json()
+    #request = requests.request(method='get', url=ApiUrl.ListPage, json=data)
+    return request
 
 @app.post("/ApiSignUp")
 async def ApiSignUp(name_eng: str, name_th: str, api_url: str, param1: str):
@@ -50,7 +60,6 @@ async def ApiSignUp(name_eng: str, name_th: str, api_url: str, param1: str):
 
 
 @app.post("/ApiSignUpJson")
-
 async def ApiSignUpJson(Registers : Model.ServiceRegisterModel):
     data = {
             'service_name' : Registers.service_name,
@@ -77,17 +86,19 @@ async def User(Userinfo : Model.UserInfoModel):
     status = {'status' : {'code' : request.status_code, 'reason' : request.reason}}
     return response,status
 
-@app.put("/Update")
-async def Update( Updates : Model.ServiceUpdateModel):
+@app.patch("/Update")
+async def Update(Updates : Model.ServiceUpdateModel):
     data = {
-        'service_id' : Updates.service_id,
-        'user_id' : Updates.user_id
-    }
-    update = requests.put(ApiUrl.Update , json=data) 
-    response = update.json()
-    status = {'status' :{'code' : update.status_code,'reason' : update.reason}}
+            'service_id' : Updates.service_id,
+            'service_name' : Updates.service_name,
+            'api_url' : Updates.api_url, 
+            'permission' : Updates.permission, 
+            'user_id' : Updates.user_id
+            }
+    request = requests.put(url = ApiUrl.Update,json=data)
+    response = request.json()
+    status = {'status' : {'code' : request.status_code, 'reason' : request.reason}}
     return response,status
-
 
 @app.delete("/Delete")
 async def Delete( Deletes : Model.ServiceDeleteModel):
@@ -99,6 +110,7 @@ async def Delete( Deletes : Model.ServiceDeleteModel):
     response = delete.json()
     status = {'status' :{'code' : delete.status_code,'reason' : delete.reason}}
     return response,status
+
 
 if __name__ == '__main__':
     uvicorn.run(app, host="0.0.0.0", port=80, debug=True)

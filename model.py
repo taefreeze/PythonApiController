@@ -11,6 +11,13 @@ class ServiceRegisterModel(BaseModel):
     permission      : str
     user_id         : str
 
+class ServiceUpdateModel(BaseModel):
+    service_id      : str
+    service_name    : str
+    api_url         : str
+    permission      : str
+    user_id         : str
+
 class UserInfoModel(BaseModel):
     Ed  : str
     aV  : str
@@ -21,6 +28,3 @@ class ServiceDeleteModel(BaseModel):
     service_id  : str
     user_id     : str
 
-class ServiceUpdateModel(BaseModel):
-    service_id  : str
-    user_id     : str
