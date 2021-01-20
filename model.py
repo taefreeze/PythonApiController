@@ -12,9 +12,7 @@ class ServiceRegisterModel(BaseModel):
     user_id         : str
 
 class UserInfoModel(BaseModel):
-    EW  : str
     Ed  : str
-    IU  : str
     aV  : str
     fL  : str
     uu  : str
