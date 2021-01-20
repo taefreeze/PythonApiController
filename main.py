@@ -29,24 +29,22 @@ async def main():
     return 'Hello World'
 
 
-@app.get("/List")
-async def List():
+@app.get("/ListOld")
+async def ListOld():
     response = requests.get(ApiUrl.ListThun).json()
     return response
 
-@app.get("/ListBody")
-async def ListBody(page : int=1,limit : int=1):
-    url ="https://fastapimongo.herokuapp.com/ApiListPage?page="+str(page)+"&limit="+str(limit)
+@app.get("/ApiList")
+async def ApiList(page : int=1,limit : int=1):
     data = {
         'page' : page,
         'limit' : limit
     }
-    request = requests.get(url).json()
-    #request = requests.request(method='get', url=ApiUrl.ListPage, json=data)
-    return request
+    request = requests.get(url=ApiUrl.ListPage, params=data)
+    return request.json()
 
-@app.post("/ApiSignUp")
-async def ApiSignUp(name_eng: str, name_th: str, api_url: str, param1: str):
+@app.post("/ApiSignUpOld")
+async def ApiSignUpOld(name_eng: str, name_th: str, api_url: str, param1: str):
     data = {
         'name_eng': name_eng,
         'name_th': name_th,
@@ -59,8 +57,8 @@ async def ApiSignUp(name_eng: str, name_th: str, api_url: str, param1: str):
     return response, status
 
 
-@app.post("/ApiSignUpJson")
-async def ApiSignUpJson(Registers : Model.ServiceRegisterModel):
+@app.post("/ApiSignUp")
+async def ApiSignUp(Registers : Model.ServiceRegisterModel):
     data = {
             'service_name' : Registers.service_name,
             'api_url' : Registers.api_url, 
