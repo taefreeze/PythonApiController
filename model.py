@@ -19,10 +19,14 @@ class ServiceUpdateModel(BaseModel):
     user_id         : str
 
 class UserInfoModel(BaseModel):
-    Ed  : str
-    aV  : str
-    fL  : str
-    uu  : str
+    Name  : str
+    Email  : str
+    Image  : str
+    Token  : str
+    
+
+
+
 
 class ServiceDeleteModel(BaseModel):
     service_id  : str

@@ -76,10 +76,10 @@ async def ApiSignUpJson(Registers : Model.ServiceRegisterModel):
 @app.post("/User")
 async def User(Userinfo : Model.UserInfoModel):
     data = {
-        'fullname' : Userinfo.Ed,
-        'google_id' : Userinfo.aV,
-        'user_photo' : Userinfo.fL,
-        'gmail' : Userinfo.uu   
+        'fullname' : Userinfo.Name,
+        'token_id' : Userinfo.Token,
+        'google_photo' : Userinfo.Image,
+        'gmail' : Userinfo.Email   
         }
     request = requests.post(url = ApiUrl.User,json=data)
     response = request.json()
