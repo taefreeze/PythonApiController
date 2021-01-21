@@ -35,10 +35,10 @@ async def ListOld():
     return response
 
 @app.get("/ApiList")
-async def ApiList(page : int=1,limit : int=1):
+async def ApiList(page : int=1):
     data = {
         'page' : page,
-        'limit' : limit
+        'limit' : 10
     }
     request = requests.get(url=ApiUrl.ListPage, params=data)
     return request.json()
