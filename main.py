@@ -36,7 +36,7 @@ async def main():
 
 
 @app.get("/service/list")
-async def serviceList(page : int=1):
+async def serviceList(page : int):
     data = {
         'page' : page,
         'limit' : 10
