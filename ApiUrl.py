@@ -3,7 +3,7 @@ Signup = "https://fastapimongo.herokuapp.com/service/add-service"
 #Delete
 Delete = "https://fastapimongo.herokuapp.com/service/body-delete"
 #user
-User = "https://fastapimongo.herokuapp.com/Login"
+User = "https://fastapimongo.herokuapp.com/login"
 #put
 Update = "https://fastapimongo.herokuapp.com/service/body-patch"
 #ListRange
