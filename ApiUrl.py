@@ -1,14 +1,14 @@
-#List
-List = "https://taeapiplatform.herokuapp.com/ApiList"
-ListThun = "https://fastapimongo.herokuapp.com/ApiList"
 #Signup
-Signup = "https://taeapiplatform.herokuapp.com/ApiSignup/"
-SignupThun = "https://fastapimongo.herokuapp.com/Service"
+Signup = "https://fastapimongo.herokuapp.com/service/add-service"
 #Delete
-Delete = "https://fastapimongo.herokuapp.com/DeleteService"
+Delete = "https://fastapimongo.herokuapp.com/service/body-delete"
 #user
 User = "https://fastapimongo.herokuapp.com/Login"
 #put
-Update = "https://fastapimongo.herokuapp.com/Update"
+Update = "https://fastapimongo.herokuapp.com/service/body-patch"
 #ListRange
-ListPage = "https://fastapimongo.herokuapp.com/ApiListPage"
+ListPage = "https://fastapimongo.herokuapp.com/service/list"
+#userService 
+userService = "https://fastapimongo.herokuapp.com/service/myapi/list"
+#admins
+admins ="https://fastapimongo.herokuapp.com/service/superuser/list"
