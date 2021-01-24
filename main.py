@@ -1,7 +1,7 @@
 from os import stat_result
 from requests.api import request
 from requests.models import Response
-from fastapi import FastAPI
+from fastapi import FastAPI, params
 from starlette import responses
 import uvicorn
 from fastapi.middleware.cors import CORSMiddleware
@@ -101,6 +101,31 @@ async def admin(page: int, user_id: str, status: str):
     status = {'status' :{'code' : request.status_code,'reason' : request.reason}}
     return response,status
 
+@app.patch("/administrator")
+async def adminPatch(SUpatch : Model.SUPatchModel):
+    data = {
+            'service_id' : SUpatch.service_id,
+            'service_name' : SUpatch.service_name,
+            'api_url' : SUpatch.api_url, 
+            'permission' : SUpatch.permission, 
+            'status' : SUpatch.status,
+            'description' : SUpatch.description
+            }
+    request = requests.patch(url = ApiUrl.adminsPatch,json=data)
+    response = request.json()
+    status = {'status' : {'code' : request.status_code, 'reason' : request.reason}}
+    return response,status
+
+@app.get("/administrator/delete")
+async def adminDelete(service_id: str, status: str):
+    data = {
+        'service_id' : service_id,
+        'status' : status
+    }
+    delete = requests.delete(url= ApiUrl.adminsDelete, params=data)
+    response = delete.json()
+    status = {'status' :{'code' : delete.status_code,'reason' : delete.reason}}
+    return response,status
 
 @app.get("/user/service")
 async def userService(page: int, user_id: str):

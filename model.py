@@ -38,3 +38,12 @@ class ServiceUpdateModel(BaseModel):
     service_id      : str
     user_id         : str 
     description     : Optional[str] = None
+    
+
+class SUPatchModel(BaseModel):
+    service_id      : Optional[str] = None
+    service_name    : Optional[str] = None
+    api_url         : Optional[str] = None
+    permission      : Optional[str] = None
+    status          : Optional[str] = None
+    description     : Optional[str] = None

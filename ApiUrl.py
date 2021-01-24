@@ -12,3 +12,5 @@ ListPage = "https://fastapimongo.herokuapp.com/service/list"
 userService = "https://fastapimongo.herokuapp.com/service/myapi/list"
 #admins
 admins ="https://fastapimongo.herokuapp.com/service/superuser/list"
+adminsDelete = "https://fastapimongo.herokuapp.com/service/superuser/body-delete"
+adminsPatch ="https://fastapimongo.herokuapp.com/service/superuser/body-patch"
